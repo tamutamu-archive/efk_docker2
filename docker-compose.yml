@@ -1,0 +1,28 @@
+version: "2.2"
+
+services:
+  elasticsearch:
+    build: ./elasticsearch
+    privileged: true
+    ports:
+      - "9200:9200"
+    environment:
+      - http_proxy=${http_proxy}
+      - https_proxy=${http_proxy}
+      - HTTP_PROXY=${http_proxy}
+      - HTTPS_PROXY=${http_proxy}
+  kibana:
+    build: ./kibana
+    privileged: true
+    ports:
+      - "5601:5601"
+    environment:
+      - http_proxy=${http_proxy}
+      - https_proxy=${http_proxy}
+      - HTTP_PROXY=${http_proxy}
+      - HTTPS_PROXY=${http_proxy}
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 172.40.1.0/24
